@@ -1,3 +1,4 @@
+
 import os
 import telebot
 from telebot import types
@@ -12,15 +13,17 @@ def home():
     return "Бот запущен!"
 
 def run():
-    port = int(os.environ.get("PORT", 8080))
+    # На Render порт всегда 10000 по умолчанию, если не задано иное
+    port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
 
 def keep_alive():
     t = Thread(target=run)
     t.start()
 
-# 2. Настройка бота
-TOKEN = os.environ.get('BOT_TOKEN')
+# 2. Настройка бота - ВСТАВЬ СВОЙ ТОКЕН НИЖЕ
+# Просто замени текст ТВОЙ_ТОКЕН_ТУТ на токен от BotFather, оставь кавычки.
+TOKEN = '8463306163:AAGkUpKohEXBkfqCE97iZlCRoy4DPnTjRQ8'
 bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start'])

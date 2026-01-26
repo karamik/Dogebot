@@ -43,6 +43,14 @@ def callback(call):
 
 # 3. Запуск
 if __name__ == "__main__":
+    # Сначала запускаем сайт для UptimeRobot
     keep_alive()
+    print("Сервер для UptimeRobot запущен!")
+    
+    # Теперь запускаем бота с принудительным сбросом старых сообщений
     print("Бот пошел в онлайн!")
-    bot.infinity_polling()
+    try:
+        bot.remove_webhook()
+        bot.polling(none_stop=True, interval=0, timeout=20)
+    except Exception as e:
+        print(f"Ошибка при запуске: {e}")
